@@ -1,3 +1,4 @@
+// Package network is ...
 package network
 
 import (
@@ -8,6 +9,7 @@ import (
     "io"
 )
 
+// Whatever...
 type Channels struct {
     Ctrl        chan string
     DataIn      chan * DataChunk
@@ -17,6 +19,7 @@ type Channels struct {
     Panic       chan bool  
 }
 
+// Blah-blah...
 type Connection struct {
     Channels
     Server              bool
@@ -27,11 +30,13 @@ type Connection struct {
     conn                net.Conn
 }
 
+// Thingamajig...
 type DataChunk struct {
     Length  int
     Bytes   []byte
 }
 
+// Start, Init, End...all wrapped in one, efficient, no!?
 func (c * Connection) Start() {
     c.logger = log.New(os.Stdout, fmt.Sprintf("[%s] ", c.Name), log.Lmicroseconds)
 
