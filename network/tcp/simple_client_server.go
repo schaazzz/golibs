@@ -52,10 +52,12 @@ func (c * Connection) Start() {
         ln, _ := net.Listen("tcp", c.Address)
         c.logger.Println("Listening on port", c.Address)
         c.conn, err = ln.Accept()
-        c.logger.Println(err)
     } else {
         c.logger.Println("Trying to connect to", c.Address)
         c.conn, err = net.Dial("tcp", c.Address)
+    }
+        
+    if err != nil {
         c.logger.Println(err)
     }
 
@@ -100,7 +102,7 @@ func (c * Connection) Start() {
             }
         case dataOut := <- c.DataOut:
             c.logger.Println(string(dataOut.Bytes))
-            c.conn.Write(dataOut)
+            c.conn.Write(dataOut.Bytes)
         case <- c.socketDisconnect:
             c.logger.Println("Socket disconnected")
             c.Connected <- false
