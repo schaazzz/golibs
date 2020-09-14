@@ -1,3 +1,4 @@
-module schaazzz.github.io/golibs
+module github.com/schaazzz/golibs
+
 
 go 1.15
